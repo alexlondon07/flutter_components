@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/src/pages/alert_page.dart';
 import 'package:flutter_components/src/providers/menu_provider.dart';
 import 'package:flutter_components/src/utils/icon_string_util.dart';
 
@@ -22,13 +23,13 @@ class HomePage extends StatelessWidget {
         initialData: [],
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           return ListView(
-            children: _listItems(snapshot.data),
+            children: _listItems(snapshot.data, context),
           );
         });
   }
 
   // Metodo para crear lista corta
-  List<Widget> _listItems(List<dynamic> data) {
+  List<Widget> _listItems(List<dynamic> data, BuildContext context) {
     final List<Widget> options = [];
 
     data.forEach((opt) {
@@ -36,7 +37,10 @@ class HomePage extends StatelessWidget {
         title: Text(opt['title']),
         leading: getIcon(opt['icon']),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
-        onTap: () {},
+        onTap: () {
+          final route = MaterialPageRoute(builder: (context) => AlertPage());
+          Navigator.push(context, route);
+        },
       );
 
       options..add(wgTemp)..add(Divider());
