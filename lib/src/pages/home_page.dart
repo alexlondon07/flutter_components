@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_components/src/providers/menu_provider.dart';
+import 'package:flutter_components/src/utils/icon_string_util.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -30,10 +31,10 @@ class HomePage extends StatelessWidget {
   List<Widget> _listItems(List<dynamic> data) {
     final List<Widget> options = [];
 
-    data.forEach((element) {
+    data.forEach((opt) {
       final wgTemp = ListTile(
-        title: Text(element['title']),
-        leading: Icon(Icons.add_a_photo, color: Colors.blue),
+        title: Text(opt['title']),
+        leading: getIcon(opt['icon']),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
         onTap: () {},
       );
