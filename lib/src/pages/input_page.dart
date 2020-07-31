@@ -11,6 +11,8 @@ class _InputPageState extends State<InputPage> {
   String _email = '';
   String _password = '';
   String _date = '';
+  String _selectedPower = 'Volar';
+  List _powers = ['Volar', 'Rayos X', 'Super Aliento', 'Super Fuerza'];
   TextEditingController _inputEditingDate = new TextEditingController();
 
   @override
@@ -30,6 +32,8 @@ class _InputPageState extends State<InputPage> {
           _createPassword(),
           Divider(),
           _createDatePicker( context ),
+          Divider(),
+          _createDropdwown(),
         ]
       ),
     );
@@ -114,6 +118,25 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
+  Widget _createDropdwown(){
+
+    return  Row(children: <Widget>[
+      Icon(Icons.select_all),
+      SizedBox(width: 30.0),
+      Expanded(
+      child: DropdownButton(
+        value: _selectedPower,
+          items: getOptionsDropdownMenuItem(),
+          onChanged: (opt) {
+            setState(() {
+              _selectedPower = opt;
+            });
+            print(opt);
+          }
+      ))
+    ]);
+  }
+
   _selectDate(BuildContext context) async {
     DateTime picked = await showDatePicker(
       context: context,
@@ -128,6 +151,17 @@ class _InputPageState extends State<InputPage> {
         _inputEditingDate.text = _date;
       });
     }
+  }
+
+  List<DropdownMenuItem<String>> getOptionsDropdownMenuItem() {
+    List<DropdownMenuItem<String>> list = new List();
+    _powers.forEach((element) {
+      list.add( DropdownMenuItem(
+        child: Text(element),
+        value: element
+      ));
+    });
+    return list;
   }
 
   Widget _createPerson(){
