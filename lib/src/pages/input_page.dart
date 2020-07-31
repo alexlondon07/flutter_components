@@ -117,9 +117,9 @@ class _InputPageState extends State<InputPage> {
   _selectDate(BuildContext context) async {
     DateTime picked = await showDatePicker(
       context: context,
-      initialDate: new DateTime.now(),
-      firstDate: new DateTime(2018),
-      lastDate: new DateTime(2020)
+      initialDate: DateTime.now().add(Duration(hours: 1)),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2101),
     );
 
     if ( picked != null ){
