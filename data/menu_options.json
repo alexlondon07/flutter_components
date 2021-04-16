@@ -27,8 +27,13 @@
         },
         {
             "route": "slider",
-            "icon": "slider",
+            "icon": "tune",
             "title": "Slider"
+        },
+        {
+            "route": "list",
+            "icon": "list",
+            "title": "Listas"
         }
     ]
 }
